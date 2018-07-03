@@ -1,29 +1,58 @@
+$(document).ready(function() {
+
+
 // Variable declaration
-let random; //random number (b/w 19 to 120 inclusive)
 let total = 0; //the sum so far
 let current_num; //the number recently clicked
 let last_num; //last number clicked
-let red; //random number for red crystal
-let yellow; //random number for yellow crystal
-let blue; //random number for blue crystal
-let green; //random number for green crystal
+let pick = chance.integer({ min: 19, max: 120 });
+let red = chance.integer({ min: 1, max: 12 });
+let yellow = chance.integer({ min: 1, max: 12 });
+let blue = chance.integer({ min: 1, max: 12 }); 
+let green = chance.integer({ min: 1, max: 12 });
+let wins = 0;
+let losses = 0;
 
 
 // Functions
-const onClick = () => {
-   checkIf();
+const redClick = () => {
+    if (total === 0 || total < pick) {
+        total = total + red;
+        $("#total").text(total);
+        // console.log("Red: ", red);
+        // console.log("Total: ", total);
+    }
+    else if (total === pick)
+    {
+        wins++;
+        $("#wins").text("Wins: " +  wins);
+        // console.log("You win! - Pick: ", pick);
+    }
+    else if (total > pick)
+    {
+        losses++;
+        $("#losses").text("Losses: " +  losses);
+    }
+        // console.log("You lose! - Pick: ", pick);
 };
 
-const checkIf = () => {
-reset();
+const yellowClick = () => {
+};
+
+const blueClick = () => {
+};
+
+const greenClick = () => {
 };
 
 const reset = () => {
-    alert("you just clicked me!");
-   
-};
 
-$(document).ready(function() {
-    $("#img-red").on("click", onClick);
+};
+//When user clicks on crystal, do the following...
+$("#img-red").on("click", redClick);
+$(".random").text(pick);
+$("#wins").text("Wins: " +  0);
+$("#losses").text("Losses: " +  0);
+
 
 });
