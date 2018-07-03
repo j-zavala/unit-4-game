@@ -26,14 +26,14 @@ const redClick = () => {
     {
         wins++;
         $("#wins").text("Wins: " +  wins);
-        // console.log("You win! - Pick: ", pick);
+        reset();
     }
     else if (total > pick)
     {
         losses++;
         $("#losses").text("Losses: " +  losses);
+        reset();
     }
-        // console.log("You lose! - Pick: ", pick);
 };
 
 const yellowClick = () => {
@@ -46,13 +46,14 @@ const greenClick = () => {
 };
 
 const reset = () => {
-
+    total = 0;
+    pick = chance.integer({ min: 19, max: 120 });
+    $(".random").text(pick);
+    red = chance.integer({ min: 1, max: 12 });
 };
 //When user clicks on crystal, do the following...
 $("#img-red").on("click", redClick);
 $(".random").text(pick);
 $("#wins").text("Wins: " +  0);
 $("#losses").text("Losses: " +  0);
-
-
 });

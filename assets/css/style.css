@@ -99,3 +99,7 @@ html {
         object-fit: cover;
         margin-left: 10px;
     }
+
+    .random, #total {
+        font-size: 5rem;
+    } 
